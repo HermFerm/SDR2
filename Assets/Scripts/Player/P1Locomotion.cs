@@ -31,7 +31,6 @@ public class P1Locomotion : MonoBehaviour
     public float coyoteTime = 0.2f;
     private float coyoteTimeCounter;
 
-
     [Header("Player Audio")]
     public AudioSource audioSource;
     public AudioClip jumpClip;
