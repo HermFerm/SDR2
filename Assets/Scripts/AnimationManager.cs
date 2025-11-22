@@ -3,12 +3,14 @@ using UnityEngine;
 public class AnimationManager : MonoBehaviour
 {
     public Animator animator;
+    Transform grafik;
     int horizontal;
     int vertical;
 
     private void Awake()
     {
-        animator = GetComponent<Animator>();
+        grafik = transform.Find("Grafik");
+        animator = grafik.GetComponent<Animator>();
         horizontal = Animator.StringToHash("Horizontal");
         vertical = Animator.StringToHash("Vertical");
     }

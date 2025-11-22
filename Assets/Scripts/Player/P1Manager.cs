@@ -4,16 +4,22 @@ public class P1Manager : MonoBehaviour
 {
     InputManager inputManager;
     P1Locomotion p1Locomotion;
+    Transform grafik;
     Animator animator;
+    P1AttackManager p1AttackManager;
 
     [Header("Flags")]
     public bool isInteracting = false;
+    public bool aimingIsUp = false;
+    public bool aimingIsDown = false;
 
     private void Awake()
     {
         inputManager = GetComponent<InputManager>();
         p1Locomotion = GetComponent<P1Locomotion>();
-        animator = GetComponent<Animator>();
+        grafik = transform.Find("Grafik");
+        animator = grafik.GetComponent<Animator>();
+        p1AttackManager = GetComponent<P1AttackManager>();
     }
 
     private void Update()
@@ -31,5 +37,15 @@ public class P1Manager : MonoBehaviour
         isInteracting = animator.GetBool("isInteracting");
         p1Locomotion.isJumping = animator.GetBool("isJumping");
         animator.SetBool("isGrounded", p1Locomotion.isGrounded);
+    }
+
+    public void HandleAttacks()
+    {
+        p1AttackManager.HandleSlice(aimingIsUp, aimingIsDown);       
+    }
+
+    public void HandleDeath()
+    {
+        Destroy(this.gameObject);
     }
 }

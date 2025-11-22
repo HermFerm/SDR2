@@ -4,7 +4,7 @@ public class InputManager : MonoBehaviour
 {
     P1Inputs p1Inputs;
     P1Locomotion p1Locomotion;
-    P1AttackManager p1AttackManager;
+    P1Manager p1Manager;
 
     public Vector2 movementInput;
     public float verticalInput;
@@ -36,7 +36,7 @@ public class InputManager : MonoBehaviour
     private void Awake()
     {
         p1Locomotion = GetComponent<P1Locomotion>();
-        p1AttackManager = GetComponent<P1AttackManager>();
+        p1Manager = GetComponent<P1Manager>();
     }
 
     public void HandleAllInputs()
@@ -66,7 +66,7 @@ public class InputManager : MonoBehaviour
         if (sliceAttackInput)
         {
             sliceAttackInput = false;
-            p1AttackManager.HandleSlice();
+            p1Manager.HandleAttacks();
         }
     }
 
