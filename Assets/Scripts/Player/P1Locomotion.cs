@@ -8,6 +8,7 @@ public class P1Locomotion : MonoBehaviour
     AnimationManager animationManager;
 
     public Vector3 moveDirection;
+    public GameObject lookDirection;
     Transform cameraObject;
     Rigidbody playerRigidbody;
 
@@ -24,6 +25,7 @@ public class P1Locomotion : MonoBehaviour
 
     [Header("Movement Speeds")]
     public float movementSpeed = 7;
+    public float rotationSpeed = 15;
 
     [Header("Jump Speeds")]
     public float jumpHeight = 3;
@@ -71,6 +73,7 @@ public class P1Locomotion : MonoBehaviour
             return;*/
 
         HandleMovement();
+        HandleRotation();
         HandleFallingAndLanding();
 
         if (isJumping)
@@ -91,6 +94,53 @@ public class P1Locomotion : MonoBehaviour
 
         bool isMovingHorizontally = Mathf.Abs(inputManager.horizontalInput) > 0.01f && isGrounded && !isJumping;
         HandleMoveSound(isMovingHorizontally);
+    }
+
+    private void HandleRotation()
+    {
+        Vector3 targetDirection = Vector3.zero;
+        Vector3 lookVector = Vector3.zero;
+
+        targetDirection = cameraObject.right * inputManager.horizontalInput;
+        targetDirection.Normalize();
+        targetDirection.z = 0;
+
+        if (targetDirection == Vector3.zero)
+            targetDirection = transform.forward;
+
+        Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+        Quaternion playerRotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+        transform.rotation = playerRotation;
+
+        lookVector = cameraObject.up * inputManager.verticalInput;
+        lookVector += cameraObject.right * inputManager.horizontalInput;
+        lookVector.Normalize();
+        lookVector.z = 0;
+
+        if (lookVector == Vector3.zero)
+            lookVector = lookDirection.transform.forward;
+
+        Quaternion lookRotation = Quaternion.LookRotation(lookVector);
+        Quaternion lookDRotation = Quaternion.Slerp(lookDirection.transform.rotation, lookRotation, rotationSpeed * Time.deltaTime);
+
+        lookDirection.transform.rotation = lookDRotation;
+
+        if (lookDirection.transform.localRotation.eulerAngles.x == 270)
+        {
+            p1Manager.aimingIsUp = true;
+            p1Manager.aimingIsDown = false;
+        }
+        else if (lookDirection.transform.localRotation.eulerAngles.x == 90)
+        {
+            p1Manager.aimingIsUp = false;
+            p1Manager.aimingIsDown = true;
+        }
+        else
+        {
+            p1Manager.aimingIsUp = false;
+            p1Manager.aimingIsDown = false;
+        }
     }
 
     private void HandleFallingAndLanding()
@@ -148,6 +198,7 @@ public class P1Locomotion : MonoBehaviour
         playerRigidbody.linearVelocity = playerVelocity;
     }
 
+    #region Sounds
     void PlayJumpSound()
     {
         if (audioSource != null && jumpClip != null)
@@ -179,5 +230,5 @@ public class P1Locomotion : MonoBehaviour
             }
         }
     }
-
+    #endregion
 }
