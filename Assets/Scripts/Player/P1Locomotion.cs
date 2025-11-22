@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Audio;
 
 public class P1Locomotion : MonoBehaviour
@@ -35,6 +36,11 @@ public class P1Locomotion : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip jumpClip;
     public AudioClip moveClip;
+
+
+    public Vector2 movementInput;
+    public float verticalInput;
+    public float horizontalInput;
 
 
     private void Awake()
@@ -79,9 +85,11 @@ public class P1Locomotion : MonoBehaviour
         }
     }
 
-    private void HandleMovement()
+    public void HandleMovement()
     {
-        moveDirection = cameraObject.right * inputManager.horizontalInput;
+
+
+        moveDirection = cameraObject.right * horizontalInput;
         moveDirection.Normalize();
         moveDirection.z = 0;
         moveDirection *= movementSpeed;
@@ -89,9 +97,22 @@ public class P1Locomotion : MonoBehaviour
         Vector3 movementVelocity = moveDirection;
         playerRigidbody.linearVelocity = movementVelocity;
 
-        bool isMovingHorizontally = Mathf.Abs(inputManager.horizontalInput) > 0.01f && isGrounded && !isJumping;
+        bool isMovingHorizontally = Mathf.Abs(horizontalInput) > 0.01f && isGrounded && !isJumping;
         HandleMoveSound(isMovingHorizontally);
     }
+
+    public void ApplyMovementInput(Vector2 input)
+    {
+        movementInput = input;
+        horizontalInput = input.x;
+        verticalInput = input.y;
+    }
+
+    public void OnMove(InputAction.CallbackContext ctx)
+    {
+        ApplyMovementInput(ctx.ReadValue<Vector2>());
+    }
+
 
     private void HandleFallingAndLanding()
     {

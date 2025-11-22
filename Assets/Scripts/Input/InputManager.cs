@@ -1,4 +1,7 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
+
+
 
 public class InputManager : MonoBehaviour
 {
@@ -20,6 +23,7 @@ public class InputManager : MonoBehaviour
             p1Inputs = new P1Inputs();
 
             p1Inputs.Actions.Movement.performed += i => movementInput = i.ReadValue<Vector2>();
+            p1Inputs.Actions.Movement.canceled += i => movementInput = Vector2.zero;
 
             p1Inputs.Actions.Space.performed += i => spaceInput = true;
             p1Inputs.Actions.SliceAttack.performed += i => sliceAttackInput = true;
