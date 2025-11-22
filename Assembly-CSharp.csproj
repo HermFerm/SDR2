@@ -10,7 +10,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{4CFA8BD7-BE83-5B27-B765-7BF96D0BD1CD}</ProjectGuid>
+    <ProjectGuid>{60893486-D0E9-A40A-1D90-C0948842D91D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -68,6 +68,7 @@
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Scripts\Input\InputManager.cs" />
     <Compile Include="Assets\Scripts\AnimationManager.cs" />
+    <Compile Include="Assets\ResetIsJumping.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

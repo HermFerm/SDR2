@@ -6,7 +6,7 @@ public class P1Locomotion : MonoBehaviour
     InputManager inputManager;
     AnimationManager animationManager;
 
-    Vector3 moveDirection;
+    public Vector3 moveDirection;
     Transform cameraObject;
     Rigidbody playerRigidbody;
 
@@ -19,9 +19,16 @@ public class P1Locomotion : MonoBehaviour
 
     [Header("Movement Flags")]
     public bool isGrounded;
+    public bool isJumping;
 
     [Header("Movement Speeds")]
     public float movementSpeed = 7;
+
+    [Header("Jump Speeds")]
+    public float jumpHeight = 3;
+    public float gravityIntensity = -15;
+    public float coyoteTime = 0.2f;
+    private float coyoteTimeCounter;
 
     private void Awake()
     {
@@ -32,6 +39,18 @@ public class P1Locomotion : MonoBehaviour
         animationManager = GetComponent<AnimationManager>();
     }
 
+    private void Update()
+    {
+        if (isGrounded)
+        {
+            coyoteTimeCounter = coyoteTime;
+        }
+        else if (coyoteTimeCounter > 0)
+        {
+            coyoteTimeCounter -= Time.deltaTime;
+        }
+    }
+
     public void HandleAllMovement()
     {
         /*if (p1Manager.isInteracting)
@@ -39,6 +58,11 @@ public class P1Locomotion : MonoBehaviour
 
         HandleMovement();
         HandleFallingAndLanding();
+
+        if (isJumping)
+        {
+            HandleJumpingHeight();
+        }
     }
 
     private void HandleMovement()
@@ -58,7 +82,7 @@ public class P1Locomotion : MonoBehaviour
         Vector3 raycastOrigin = transform.position;
         raycastOrigin.y = raycastOrigin.y + rayCastHeightOffset;
 
-        if (!isGrounded)
+        if (!isGrounded && !isJumping)
         {
             if (!p1Manager.isInteracting)
             {
@@ -84,5 +108,24 @@ public class P1Locomotion : MonoBehaviour
         {
             isGrounded = false;
         }
+    }
+
+    public void HandleJumping()
+    {
+        if (coyoteTimeCounter > 0f)
+        {
+            animationManager.animator.SetBool("isJumping", true);
+            animationManager.PlayTargetAnimation("Jump", false);
+
+            coyoteTimeCounter = 0f;
+        }
+    }
+
+    void HandleJumpingHeight()
+    {
+        float jumpingVelocity = Mathf.Sqrt(-2 * gravityIntensity * jumpHeight);
+        Vector3 playerVelocity = moveDirection;
+        playerVelocity.y = jumpingVelocity;
+        playerRigidbody.linearVelocity = playerVelocity;
     }
 }

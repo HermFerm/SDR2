@@ -29,5 +29,7 @@ public class P1Manager : MonoBehaviour
     private void LateUpdate()
     {
         isInteracting = animator.GetBool("isInteracting");
+        p1Locomotion.isJumping = animator.GetBool("isJumping");
+        animator.SetBool("isGrounded", p1Locomotion.isGrounded);
     }
 }
