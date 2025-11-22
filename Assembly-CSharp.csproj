@@ -66,6 +66,7 @@
     <Compile Include="Assets\Scripts\Player\P1Locomotion.cs" />
     <Compile Include="Assets\Scripts\Input\P1Inputs.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
+    <Compile Include="Assets\Scripts\Player\P1AttackManager.cs" />
     <Compile Include="Assets\Scripts\Input\InputManager.cs" />
     <Compile Include="Assets\Scripts\AnimationManager.cs" />
     <Compile Include="Assets\ResetIsJumping.cs" />
