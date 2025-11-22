@@ -50,3 +50,17 @@ Thumbs.db
 
 /Library
 /Temp
+
+# Visual Studio
+.vs/
+
+# Unity-Caches
+Library/
+Logs/
+Temp/
+Obj/
+UserSettings/
+
+# Builds
+Build/
+Builds/

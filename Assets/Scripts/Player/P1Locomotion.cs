@@ -1,4 +1,5 @@
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Audio;
 
 public class P1Locomotion : MonoBehaviour
 {
@@ -30,6 +31,13 @@ public class P1Locomotion : MonoBehaviour
     public float coyoteTime = 0.2f;
     private float coyoteTimeCounter;
 
+
+    [Header("Player Audio")]
+    public AudioSource audioSource;
+    public AudioClip jumpClip;
+    public AudioClip moveClip;
+
+
     private void Awake()
     {
         inputManager = GetComponent<InputManager>();
@@ -37,7 +45,14 @@ public class P1Locomotion : MonoBehaviour
         playerRigidbody = GetComponent<Rigidbody>();
         cameraObject = Camera.main.transform;
         animationManager = GetComponent<AnimationManager>();
+
+        if (audioSource != null)
+        {
+            audioSource.playOnAwake = false;
+            audioSource.loop = false;
+        }
     }
+
 
     private void Update()
     {
@@ -74,6 +89,9 @@ public class P1Locomotion : MonoBehaviour
 
         Vector3 movementVelocity = moveDirection;
         playerRigidbody.linearVelocity = movementVelocity;
+
+        bool isMovingHorizontally = Mathf.Abs(inputManager.horizontalInput) > 0.01f && isGrounded && !isJumping;
+        HandleMoveSound(isMovingHorizontally);
     }
 
     private void HandleFallingAndLanding()
@@ -96,7 +114,7 @@ public class P1Locomotion : MonoBehaviour
 
         if (Physics.SphereCast(raycastOrigin, 0.2f, -Vector3.up, out hit, groundLayer))
         {
-            if(!isGrounded && !p1Manager.isInteracting)
+            if (!isGrounded && !p1Manager.isInteracting)
             {
                 animationManager.PlayTargetAnimation("Land", true);
             }
@@ -117,6 +135,8 @@ public class P1Locomotion : MonoBehaviour
             animationManager.animator.SetBool("isJumping", true);
             animationManager.PlayTargetAnimation("Jump", false);
 
+            PlayJumpSound();
+
             coyoteTimeCounter = 0f;
         }
     }
@@ -128,4 +148,37 @@ public class P1Locomotion : MonoBehaviour
         playerVelocity.y = jumpingVelocity;
         playerRigidbody.linearVelocity = playerVelocity;
     }
+
+    void PlayJumpSound()
+    {
+        if (audioSource != null && jumpClip != null)
+        {
+            audioSource.PlayOneShot(jumpClip);
+        }
+    }
+    void HandleMoveSound(bool isMoving)
+    {
+        if (audioSource == null || moveClip == null)
+            return;
+
+        if (isMoving)
+        {
+            if (!audioSource.isPlaying || audioSource.clip != moveClip)
+            {
+                audioSource.clip = moveClip;
+                audioSource.loop = true;
+                audioSource.Play();
+            }
+        }
+        else
+        {
+            if (audioSource.isPlaying && audioSource.clip == moveClip)
+            {
+                audioSource.Stop();
+                audioSource.loop = false;
+                audioSource.clip = null;
+            }
+        }
+    }
+
 }
