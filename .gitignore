@@ -64,3 +64,4 @@ UserSettings/
 # Builds
 Build/
 Builds/
+/obj
