@@ -108,6 +108,15 @@ public partial class @P1Inputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SliceAttack"",
+                    ""type"": ""Button"",
+                    ""id"": ""e89e2447-08f9-4c5a-8d77-f77f241f617d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -176,6 +185,17 @@ public partial class @P1Inputs: IInputActionCollection2, IDisposable
                     ""action"": ""Space"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e9fee84a-eb6c-4af4-8c7e-5d9fbdfbe0c1"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SliceAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -186,6 +206,7 @@ public partial class @P1Inputs: IInputActionCollection2, IDisposable
         m_Actions = asset.FindActionMap("Actions", throwIfNotFound: true);
         m_Actions_Movement = m_Actions.FindAction("Movement", throwIfNotFound: true);
         m_Actions_Space = m_Actions.FindAction("Space", throwIfNotFound: true);
+        m_Actions_SliceAttack = m_Actions.FindAction("SliceAttack", throwIfNotFound: true);
     }
 
     ~@P1Inputs()
@@ -268,6 +289,7 @@ public partial class @P1Inputs: IInputActionCollection2, IDisposable
     private List<IActionsActions> m_ActionsActionsCallbackInterfaces = new List<IActionsActions>();
     private readonly InputAction m_Actions_Movement;
     private readonly InputAction m_Actions_Space;
+    private readonly InputAction m_Actions_SliceAttack;
     /// <summary>
     /// Provides access to input actions defined in input action map "Actions".
     /// </summary>
@@ -287,6 +309,10 @@ public partial class @P1Inputs: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Actions/Space".
         /// </summary>
         public InputAction @Space => m_Wrapper.m_Actions_Space;
+        /// <summary>
+        /// Provides access to the underlying input action "Actions/SliceAttack".
+        /// </summary>
+        public InputAction @SliceAttack => m_Wrapper.m_Actions_SliceAttack;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -319,6 +345,9 @@ public partial class @P1Inputs: IInputActionCollection2, IDisposable
             @Space.started += instance.OnSpace;
             @Space.performed += instance.OnSpace;
             @Space.canceled += instance.OnSpace;
+            @SliceAttack.started += instance.OnSliceAttack;
+            @SliceAttack.performed += instance.OnSliceAttack;
+            @SliceAttack.canceled += instance.OnSliceAttack;
         }
 
         /// <summary>
@@ -336,6 +365,9 @@ public partial class @P1Inputs: IInputActionCollection2, IDisposable
             @Space.started -= instance.OnSpace;
             @Space.performed -= instance.OnSpace;
             @Space.canceled -= instance.OnSpace;
+            @SliceAttack.started -= instance.OnSliceAttack;
+            @SliceAttack.performed -= instance.OnSliceAttack;
+            @SliceAttack.canceled -= instance.OnSliceAttack;
         }
 
         /// <summary>
@@ -390,5 +422,12 @@ public partial class @P1Inputs: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSpace(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "SliceAttack" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSliceAttack(InputAction.CallbackContext context);
     }
 }

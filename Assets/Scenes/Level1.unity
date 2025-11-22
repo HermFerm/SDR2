@@ -720,9 +720,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: SliceSplash
       objectReference: {fileID: 0}
+    - target: {fileID: 2622017609973254553, guid: 0a6a98715cb31fe4bad7b75373b851c6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2767747872668816185, guid: 0a6a98715cb31fe4bad7b75373b851c6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.26
+      value: -7
       objectReference: {fileID: 0}
     - target: {fileID: 2767747872668816185, guid: 0a6a98715cb31fe4bad7b75373b851c6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -773,9 +777,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 277961308815631211, guid: 499aecbe4f2bd3f43a288e9e1a5212ca, type: 3}
+      propertyPath: sliceSplash1
+      value: 
+      objectReference: {fileID: 2622017609973254553, guid: 0a6a98715cb31fe4bad7b75373b851c6, type: 3}
     - target: {fileID: 4864286035584309320, guid: 499aecbe4f2bd3f43a288e9e1a5212ca, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.08
+      value: -8
       objectReference: {fileID: 0}
     - target: {fileID: 4864286035584309320, guid: 499aecbe4f2bd3f43a288e9e1a5212ca, type: 3}
       propertyPath: m_LocalPosition.y
