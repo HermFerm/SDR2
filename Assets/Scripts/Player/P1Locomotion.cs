@@ -84,63 +84,130 @@ public class P1Locomotion : MonoBehaviour
 
     private void HandleMovement()
     {
-        moveDirection = cameraObject.right * inputManager.horizontalInput;
-        moveDirection.Normalize();
-        moveDirection.z = 0;
-        moveDirection *= movementSpeed;
+        if (p1Manager.p1)
+        {
+            moveDirection = cameraObject.right * inputManager.horizontalInput;
+            moveDirection.Normalize();
+            moveDirection.z = 0;
+            moveDirection *= movementSpeed;
 
-        Vector3 movementVelocity = moveDirection;
-        playerRigidbody.linearVelocity = movementVelocity;
+            Vector3 movementVelocity = moveDirection;
+            playerRigidbody.linearVelocity = movementVelocity;
 
-        bool isMovingHorizontally = Mathf.Abs(inputManager.horizontalInput) > 0.01f && isGrounded && !isJumping;
-        HandleMoveSound(isMovingHorizontally);
+            bool isMovingHorizontally = Mathf.Abs(inputManager.horizontalInput) > 0.01f && isGrounded && !isJumping;
+            HandleMoveSound(isMovingHorizontally);
+        }
+        else
+        {
+            moveDirection = cameraObject.right * inputManager.horizontalInput2;
+            moveDirection.Normalize();
+            moveDirection.z = 0;
+            moveDirection *= movementSpeed;
+
+            Vector3 movementVelocity = moveDirection;
+            playerRigidbody.linearVelocity = movementVelocity;
+
+            bool isMovingHorizontally = Mathf.Abs(inputManager.horizontalInput2) > 0.01f && isGrounded && !isJumping;
+            HandleMoveSound(isMovingHorizontally);
+        }
+        
     }
 
     private void HandleRotation()
     {
-        Vector3 targetDirection = Vector3.zero;
-        Vector3 lookVector = Vector3.zero;
-
-        targetDirection = cameraObject.right * inputManager.horizontalInput;
-        targetDirection.Normalize();
-        targetDirection.z = 0;
-
-        if (targetDirection == Vector3.zero)
-            targetDirection = transform.forward;
-
-        Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
-        Quaternion playerRotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-
-        transform.rotation = playerRotation;
-
-        lookVector = cameraObject.up * inputManager.verticalInput;
-        lookVector += cameraObject.right * inputManager.horizontalInput;
-        lookVector.Normalize();
-        lookVector.z = 0;
-
-        if (lookVector == Vector3.zero)
-            lookVector = lookDirection.transform.forward;
-
-        Quaternion lookRotation = Quaternion.LookRotation(lookVector);
-        Quaternion lookDRotation = Quaternion.Slerp(lookDirection.transform.rotation, lookRotation, rotationSpeed * Time.deltaTime);
-
-        lookDirection.transform.rotation = lookDRotation;
-
-        if (lookDirection.transform.localRotation.eulerAngles.x == 270)
+        if (p1Manager.p1)
         {
-            p1Manager.aimingIsUp = true;
-            p1Manager.aimingIsDown = false;
-        }
-        else if (lookDirection.transform.localRotation.eulerAngles.x == 90)
-        {
-            p1Manager.aimingIsUp = false;
-            p1Manager.aimingIsDown = true;
+            Vector3 targetDirection = Vector3.zero;
+            Vector3 lookVector = Vector3.zero;
+
+            targetDirection = cameraObject.right * inputManager.horizontalInput;
+            targetDirection.Normalize();
+            targetDirection.z = 0;
+
+            if (targetDirection == Vector3.zero)
+                targetDirection = transform.forward;
+
+            Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+            Quaternion playerRotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+            transform.rotation = playerRotation;
+
+            lookVector = cameraObject.up * inputManager.verticalInput;
+            lookVector += cameraObject.right * inputManager.horizontalInput;
+            lookVector.Normalize();
+            lookVector.z = 0;
+
+            if (lookVector == Vector3.zero)
+                lookVector = lookDirection.transform.forward;
+
+            Quaternion lookRotation = Quaternion.LookRotation(lookVector);
+            Quaternion lookDRotation = Quaternion.Slerp(lookDirection.transform.rotation, lookRotation, rotationSpeed * Time.deltaTime);
+
+            lookDirection.transform.rotation = lookDRotation;
+
+            if (lookDirection.transform.localRotation.eulerAngles.x == 270)
+            {
+                p1Manager.aimingIsUp = true;
+                p1Manager.aimingIsDown = false;
+            }
+            else if (lookDirection.transform.localRotation.eulerAngles.x == 90)
+            {
+                p1Manager.aimingIsUp = false;
+                p1Manager.aimingIsDown = true;
+            }
+            else
+            {
+                p1Manager.aimingIsUp = false;
+                p1Manager.aimingIsDown = false;
+            }
         }
         else
         {
-            p1Manager.aimingIsUp = false;
-            p1Manager.aimingIsDown = false;
+            Vector3 targetDirection = Vector3.zero;
+            Vector3 lookVector = Vector3.zero;
+
+            targetDirection = cameraObject.right * inputManager.horizontalInput2;
+            targetDirection.Normalize();
+            targetDirection.z = 0;
+
+            if (targetDirection == Vector3.zero)
+                targetDirection = transform.forward;
+
+            Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+            Quaternion playerRotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+            transform.rotation = playerRotation;
+
+            lookVector = cameraObject.up * inputManager.verticalInput2;
+            lookVector += cameraObject.right * inputManager.horizontalInput2;
+            lookVector.Normalize();
+            lookVector.z = 0;
+
+            if (lookVector == Vector3.zero)
+                lookVector = lookDirection.transform.forward;
+
+            Quaternion lookRotation = Quaternion.LookRotation(lookVector);
+            Quaternion lookDRotation = Quaternion.Slerp(lookDirection.transform.rotation, lookRotation, rotationSpeed * Time.deltaTime);
+
+            lookDirection.transform.rotation = lookDRotation;
+
+            if (lookDirection.transform.localRotation.eulerAngles.x == 270)
+            {
+                p1Manager.aimingIsUp = true;
+                p1Manager.aimingIsDown = false;
+            }
+            else if (lookDirection.transform.localRotation.eulerAngles.x == 90)
+            {
+                p1Manager.aimingIsUp = false;
+                p1Manager.aimingIsDown = true;
+            }
+            else
+            {
+                p1Manager.aimingIsUp = false;
+                p1Manager.aimingIsDown = false;
+            }
         }
+        
     }
 
     private void HandleFallingAndLanding()

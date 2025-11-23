@@ -16,6 +16,8 @@ public class P1Manager : MonoBehaviour
     public bool aimingIsUp = false;
     public bool aimingIsDown = false;
     public bool canInput = true;
+    public bool p1 = true;
+    public bool endGame = false;
 
     private void Awake()
     {
@@ -28,6 +30,18 @@ public class P1Manager : MonoBehaviour
         playerRigidbody = GetComponent<Rigidbody>();
     }
 
+    private void Start()
+    {
+        if (p1)
+        {
+            WorldManager.Instance.p1 = this;
+        }
+        else
+        {
+            WorldManager.Instance.p2 = this;
+        }
+    }
+
     private void Update()
     {
         if (canInput)
@@ -36,7 +50,8 @@ public class P1Manager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        p1Locomotion.HandleAllMovement();
+        if (!endGame)
+            p1Locomotion.HandleAllMovement();
     }
 
     private void LateUpdate()
@@ -46,15 +61,24 @@ public class P1Manager : MonoBehaviour
         animator.SetBool("isGrounded", p1Locomotion.isGrounded);
     }
 
-    public void HandleAttacks()
+    public void HandleAttacks(bool dash = false)
     {
-        //animationManager.PlayTargetAnimation("Slicing", true);
-        //p1AttackManager.HandleSlice(aimingIsUp, aimingIsDown);
-        p1AttackManager.HandleDash(aimingIsUp, aimingIsDown); 
+        if (!dash)
+        {
+            animationManager.PlayTargetAnimation("Slicing", true);
+            p1AttackManager.HandleSlice(aimingIsUp, aimingIsDown);
+        }
+        else
+        {
+            p1AttackManager.HandleDash(aimingIsUp, aimingIsDown); 
+        }
     }
 
     public void HandleDeath()
     {
-        Destroy(this.gameObject);
+        WorldManager.Instance.deathPosition = transform;
+        WorldManager.Instance.deadP = this;
+        WorldManager.Instance.PerformGameOver();
+        Destroy(gameObject);       
     }
 }

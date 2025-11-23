@@ -117,6 +117,15 @@ public partial class @P1Inputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DashAttack"",
+                    ""type"": ""Button"",
+                    ""id"": ""edffbda4-5e61-4a71-ad1a-7aa379c86fc1"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -189,11 +198,154 @@ public partial class @P1Inputs: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""e9fee84a-eb6c-4af4-8c7e-5d9fbdfbe0c1"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""path"": ""<Keyboard>/v"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""SliceAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f0d3f557-9195-43cc-8ab7-d2f6304a0a54"",
+                    ""path"": ""<Keyboard>/b"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DashAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Actions2"",
+            ""id"": ""c2d4de59-8b9d-4180-9038-6561f323f5ea"",
+            ""actions"": [
+                {
+                    ""name"": ""Movement"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""a200489f-0384-485a-a27f-2aa69008d499"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Space"",
+                    ""type"": ""Button"",
+                    ""id"": ""cf808c7a-9fb1-4515-8011-52209542bb8d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SliceAttack"",
+                    ""type"": ""Button"",
+                    ""id"": ""1844793e-e715-49d8-a198-087ab53cd13e"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DashAttack"",
+                    ""type"": ""Button"",
+                    ""id"": ""b12c9397-6dd4-476e-a476-7bfecf172205"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""Pfeile"",
+                    ""id"": ""4d7ee430-dbc0-4927-aba4-0f0fea61f525"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""fa68eaf6-c4c0-404a-90e5-648f025a34ff"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""334a46af-1325-400b-8470-dfcf653ab91f"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""bcb11767-4c83-4a9f-bb21-ac0a50986d25"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""aafc17b9-3851-4263-98e2-529b1f9eabbc"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""92fbf240-3ec2-4125-b8cb-792ec776a545"",
+                    ""path"": ""<Keyboard>/ctrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Space"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9fe18f7b-5a92-457d-b129-e3b6b48fa39a"",
+                    ""path"": ""<Keyboard>/numpad2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SliceAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ee5c1b69-0bcb-48fc-8fdc-e0f9320c81f7"",
+                    ""path"": ""<Keyboard>/numpad3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DashAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -207,11 +359,19 @@ public partial class @P1Inputs: IInputActionCollection2, IDisposable
         m_Actions_Movement = m_Actions.FindAction("Movement", throwIfNotFound: true);
         m_Actions_Space = m_Actions.FindAction("Space", throwIfNotFound: true);
         m_Actions_SliceAttack = m_Actions.FindAction("SliceAttack", throwIfNotFound: true);
+        m_Actions_DashAttack = m_Actions.FindAction("DashAttack", throwIfNotFound: true);
+        // Actions2
+        m_Actions2 = asset.FindActionMap("Actions2", throwIfNotFound: true);
+        m_Actions2_Movement = m_Actions2.FindAction("Movement", throwIfNotFound: true);
+        m_Actions2_Space = m_Actions2.FindAction("Space", throwIfNotFound: true);
+        m_Actions2_SliceAttack = m_Actions2.FindAction("SliceAttack", throwIfNotFound: true);
+        m_Actions2_DashAttack = m_Actions2.FindAction("DashAttack", throwIfNotFound: true);
     }
 
     ~@P1Inputs()
     {
         UnityEngine.Debug.Assert(!m_Actions.enabled, "This will cause a leak and performance issues, P1Inputs.Actions.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_Actions2.enabled, "This will cause a leak and performance issues, P1Inputs.Actions2.Disable() has not been called.");
     }
 
     /// <summary>
@@ -290,6 +450,7 @@ public partial class @P1Inputs: IInputActionCollection2, IDisposable
     private readonly InputAction m_Actions_Movement;
     private readonly InputAction m_Actions_Space;
     private readonly InputAction m_Actions_SliceAttack;
+    private readonly InputAction m_Actions_DashAttack;
     /// <summary>
     /// Provides access to input actions defined in input action map "Actions".
     /// </summary>
@@ -313,6 +474,10 @@ public partial class @P1Inputs: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Actions/SliceAttack".
         /// </summary>
         public InputAction @SliceAttack => m_Wrapper.m_Actions_SliceAttack;
+        /// <summary>
+        /// Provides access to the underlying input action "Actions/DashAttack".
+        /// </summary>
+        public InputAction @DashAttack => m_Wrapper.m_Actions_DashAttack;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -348,6 +513,9 @@ public partial class @P1Inputs: IInputActionCollection2, IDisposable
             @SliceAttack.started += instance.OnSliceAttack;
             @SliceAttack.performed += instance.OnSliceAttack;
             @SliceAttack.canceled += instance.OnSliceAttack;
+            @DashAttack.started += instance.OnDashAttack;
+            @DashAttack.performed += instance.OnDashAttack;
+            @DashAttack.canceled += instance.OnDashAttack;
         }
 
         /// <summary>
@@ -368,6 +536,9 @@ public partial class @P1Inputs: IInputActionCollection2, IDisposable
             @SliceAttack.started -= instance.OnSliceAttack;
             @SliceAttack.performed -= instance.OnSliceAttack;
             @SliceAttack.canceled -= instance.OnSliceAttack;
+            @DashAttack.started -= instance.OnDashAttack;
+            @DashAttack.performed -= instance.OnDashAttack;
+            @DashAttack.canceled -= instance.OnDashAttack;
         }
 
         /// <summary>
@@ -401,6 +572,135 @@ public partial class @P1Inputs: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="ActionsActions" /> instance referencing this action map.
     /// </summary>
     public ActionsActions @Actions => new ActionsActions(this);
+
+    // Actions2
+    private readonly InputActionMap m_Actions2;
+    private List<IActions2Actions> m_Actions2ActionsCallbackInterfaces = new List<IActions2Actions>();
+    private readonly InputAction m_Actions2_Movement;
+    private readonly InputAction m_Actions2_Space;
+    private readonly InputAction m_Actions2_SliceAttack;
+    private readonly InputAction m_Actions2_DashAttack;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "Actions2".
+    /// </summary>
+    public struct Actions2Actions
+    {
+        private @P1Inputs m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public Actions2Actions(@P1Inputs wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "Actions2/Movement".
+        /// </summary>
+        public InputAction @Movement => m_Wrapper.m_Actions2_Movement;
+        /// <summary>
+        /// Provides access to the underlying input action "Actions2/Space".
+        /// </summary>
+        public InputAction @Space => m_Wrapper.m_Actions2_Space;
+        /// <summary>
+        /// Provides access to the underlying input action "Actions2/SliceAttack".
+        /// </summary>
+        public InputAction @SliceAttack => m_Wrapper.m_Actions2_SliceAttack;
+        /// <summary>
+        /// Provides access to the underlying input action "Actions2/DashAttack".
+        /// </summary>
+        public InputAction @DashAttack => m_Wrapper.m_Actions2_DashAttack;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_Actions2; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="Actions2Actions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(Actions2Actions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="Actions2Actions" />
+        public void AddCallbacks(IActions2Actions instance)
+        {
+            if (instance == null || m_Wrapper.m_Actions2ActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_Actions2ActionsCallbackInterfaces.Add(instance);
+            @Movement.started += instance.OnMovement;
+            @Movement.performed += instance.OnMovement;
+            @Movement.canceled += instance.OnMovement;
+            @Space.started += instance.OnSpace;
+            @Space.performed += instance.OnSpace;
+            @Space.canceled += instance.OnSpace;
+            @SliceAttack.started += instance.OnSliceAttack;
+            @SliceAttack.performed += instance.OnSliceAttack;
+            @SliceAttack.canceled += instance.OnSliceAttack;
+            @DashAttack.started += instance.OnDashAttack;
+            @DashAttack.performed += instance.OnDashAttack;
+            @DashAttack.canceled += instance.OnDashAttack;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="Actions2Actions" />
+        private void UnregisterCallbacks(IActions2Actions instance)
+        {
+            @Movement.started -= instance.OnMovement;
+            @Movement.performed -= instance.OnMovement;
+            @Movement.canceled -= instance.OnMovement;
+            @Space.started -= instance.OnSpace;
+            @Space.performed -= instance.OnSpace;
+            @Space.canceled -= instance.OnSpace;
+            @SliceAttack.started -= instance.OnSliceAttack;
+            @SliceAttack.performed -= instance.OnSliceAttack;
+            @SliceAttack.canceled -= instance.OnSliceAttack;
+            @DashAttack.started -= instance.OnDashAttack;
+            @DashAttack.performed -= instance.OnDashAttack;
+            @DashAttack.canceled -= instance.OnDashAttack;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="Actions2Actions.UnregisterCallbacks(IActions2Actions)" />.
+        /// </summary>
+        /// <seealso cref="Actions2Actions.UnregisterCallbacks(IActions2Actions)" />
+        public void RemoveCallbacks(IActions2Actions instance)
+        {
+            if (m_Wrapper.m_Actions2ActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="Actions2Actions.AddCallbacks(IActions2Actions)" />
+        /// <seealso cref="Actions2Actions.RemoveCallbacks(IActions2Actions)" />
+        /// <seealso cref="Actions2Actions.UnregisterCallbacks(IActions2Actions)" />
+        public void SetCallbacks(IActions2Actions instance)
+        {
+            foreach (var item in m_Wrapper.m_Actions2ActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_Actions2ActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="Actions2Actions" /> instance referencing this action map.
+    /// </summary>
+    public Actions2Actions @Actions2 => new Actions2Actions(this);
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Actions" which allows adding and removing callbacks.
     /// </summary>
@@ -429,5 +729,48 @@ public partial class @P1Inputs: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSliceAttack(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "DashAttack" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnDashAttack(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Actions2" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="Actions2Actions.AddCallbacks(IActions2Actions)" />
+    /// <seealso cref="Actions2Actions.RemoveCallbacks(IActions2Actions)" />
+    public interface IActions2Actions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "Movement" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMovement(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Space" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSpace(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "SliceAttack" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSliceAttack(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "DashAttack" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnDashAttack(InputAction.CallbackContext context);
     }
 }
