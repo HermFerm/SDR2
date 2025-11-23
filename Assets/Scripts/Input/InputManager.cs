@@ -5,8 +5,10 @@ public class InputManager : MonoBehaviour
     P1Inputs p1Inputs;
     P1Locomotion p1Locomotion;
     P1Manager p1Manager;
+    AnimationManager animationManager;
 
     public Vector2 movementInput;
+    private float moveAmount;
     public float verticalInput;
     public float horizontalInput;
 
@@ -37,6 +39,7 @@ public class InputManager : MonoBehaviour
     {
         p1Locomotion = GetComponent<P1Locomotion>();
         p1Manager = GetComponent<P1Manager>();
+        animationManager = GetComponent<AnimationManager>();
     }
 
     public void HandleAllInputs()
@@ -50,6 +53,8 @@ public class InputManager : MonoBehaviour
     {
         verticalInput = movementInput.y;
         horizontalInput = movementInput.x;
+        moveAmount = Mathf.Clamp01(Mathf.Abs(horizontalInput));
+        animationManager.UpdateAnimatorValues(moveAmount, 0);
     }
 
     void HandleJumpingInput()

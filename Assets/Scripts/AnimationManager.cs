@@ -15,6 +15,12 @@ public class AnimationManager : MonoBehaviour
         vertical = Animator.StringToHash("Vertical");
     }
 
+    public void UpdateAnimatorValues(float horizontalMovement, float verticalMovement)
+    {
+        animator.SetFloat(horizontal, horizontalMovement, 0.1f, Time.deltaTime);
+        animator.SetFloat(vertical, verticalMovement, 0.1f, Time.deltaTime);
+    }
+
     public void PlayTargetAnimation(string targetAnimation, bool isInteracting)
     {
         animator.SetBool("isInteracting", isInteracting);
