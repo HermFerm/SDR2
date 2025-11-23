@@ -27,15 +27,19 @@ public class WorldManager : MonoBehaviour
         if (p1 != deadP)
         {
             p1.canInput = false;
+            p1.endGame = true;
         }
 
         if (p2 != deadP)
         {
             p2.canInput = false;
+            p2.endGame = true;
         }
 
         GameObject ds = Instantiate(deathSplash);
-        ds.transform = deathPosition;
+        ds.transform.position = deathPosition.position;
+        ds.transform.rotation = deathPosition.rotation;
+        ds.transform.localScale = deathPosition.localScale;
     }
 
 

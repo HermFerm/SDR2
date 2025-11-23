@@ -17,6 +17,7 @@ public class P1Manager : MonoBehaviour
     public bool aimingIsDown = false;
     public bool canInput = true;
     public bool p1 = true;
+    public bool endGame = false;
 
     private void Awake()
     {
@@ -49,7 +50,8 @@ public class P1Manager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        p1Locomotion.HandleAllMovement();
+        if (!endGame)
+            p1Locomotion.HandleAllMovement();
     }
 
     private void LateUpdate()
