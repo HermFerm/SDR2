@@ -7,6 +7,7 @@ public class P1AttackManager : MonoBehaviour
     P1Manager p1Manager;
 
     public GameObject sliceSplash1;
+    public GameObject dashSplash1;
     public GameObject spawnPoint;
     public GameObject spawnRotation;
 
@@ -20,13 +21,20 @@ public class P1AttackManager : MonoBehaviour
         p1Manager = GetComponent<P1Manager>();
     }
 
-    public void HandleSlice(bool up = false, bool down = false)
+    private void SpawnSplash(GameObject spawnPrefab, bool up = false, bool down = false, bool dash = false)
     {
         GameObject splash;
         Vector3 splashPosition;
-        splash = Instantiate(sliceSplash1);
+        splash = Instantiate(spawnPrefab);
         Transform grafic = splash.transform.Find("Grafic");
         splashPosition = spawnPoint.transform.position;
+
+        if (dash)
+        {
+            splashPosition.y -= 1.2f;
+            splashPosition.x -= 0.2f;
+        }
+
         splash.transform.position = splashPosition;
         splash.transform.rotation = spawnRotation.transform.rotation;
 
@@ -48,12 +56,18 @@ public class P1AttackManager : MonoBehaviour
             DamageCollider dc = child.GetComponent<DamageCollider>();
             dc.owner = p1Manager;
         }
+    }
 
+    public void HandleSlice(bool up = false, bool down = false)
+    {
+        SpawnSplash(sliceSplash1, up, down);
     }
 
     public void HandleDash(bool up = false, bool down = false)
     {
         p1Manager.canInput = false;
+
+        SpawnSplash(dashSplash1, up, down, true);
 
         if (dashCo != null)
         {
