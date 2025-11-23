@@ -4,16 +4,18 @@ using UnityEngine.InputSystem;
 public class P1Manager : MonoBehaviour
 {
     InputManager inputManager;
-    P1Locomotion p1Locomotion;
+    public P1Locomotion p1Locomotion;
     Transform grafik;
-    Animator animator;
+    public Animator animator;
     P1AttackManager p1AttackManager;
-    AnimationManager animationManager;
+    public AnimationManager animationManager;
+    public Rigidbody playerRigidbody;
 
     [Header("Flags")]
     public bool isInteracting = false;
     public bool aimingIsUp = false;
     public bool aimingIsDown = false;
+    public bool canInput = true;
 
     private void Awake()
     {
@@ -23,11 +25,13 @@ public class P1Manager : MonoBehaviour
         animator = grafik.GetComponent<Animator>();
         p1AttackManager = GetComponent<P1AttackManager>();
         animationManager = GetComponent<AnimationManager>();
+        playerRigidbody = GetComponent<Rigidbody>();
     }
 
     private void Update()
     {
-        inputManager.HandleAllInputs();
+        if (canInput)
+            inputManager.HandleAllInputs();
     }
 
     private void FixedUpdate()
@@ -44,8 +48,9 @@ public class P1Manager : MonoBehaviour
 
     public void HandleAttacks()
     {
-        animationManager.PlayTargetAnimation("Slicing", true);
-        p1AttackManager.HandleSlice(aimingIsUp, aimingIsDown);       
+        //animationManager.PlayTargetAnimation("Slicing", true);
+        //p1AttackManager.HandleSlice(aimingIsUp, aimingIsDown);
+        p1AttackManager.HandleDash(aimingIsUp, aimingIsDown); 
     }
 
     public void HandleDeath()

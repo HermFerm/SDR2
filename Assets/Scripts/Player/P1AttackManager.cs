@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class P1AttackManager : MonoBehaviour
@@ -7,6 +9,11 @@ public class P1AttackManager : MonoBehaviour
     public GameObject sliceSplash1;
     public GameObject spawnPoint;
     public GameObject spawnRotation;
+
+    [Header("Dash Specs")]
+    Coroutine dashCo;
+    public float dashSpeed = 5;
+    public float dashingTime = 1;
 
     private void Awake()
     {
@@ -42,5 +49,42 @@ public class P1AttackManager : MonoBehaviour
             dc.owner = p1Manager;
         }
 
+    }
+
+    public void HandleDash(bool up = false, bool down = false)
+    {
+        p1Manager.canInput = false;
+
+        if (dashCo != null)
+        {
+            StopCoroutine(dashCo);
+        }
+        dashCo = StartCoroutine(DashingCo());
+    }
+
+    private IEnumerator DashingCo()
+    {
+        Vector3 dashDirection = p1Manager.p1Locomotion.lookDirection.transform.forward;
+        dashDirection.Normalize();
+        dashDirection *= dashSpeed;
+
+        float forceX = dashDirection.x;
+        float forceY = dashDirection.y;
+        float forceZ = dashDirection.z;
+        float dashTimer = 0;
+
+        p1Manager.animator.SetBool("isDashingNow", true);
+
+        p1Manager.animationManager.PlayTargetAnimation("Dash", true);
+
+        while (dashTimer <= dashingTime)
+        {
+            p1Manager.playerRigidbody.AddForce(forceX, forceY, forceZ, ForceMode.VelocityChange);
+            dashTimer += Time.deltaTime;
+            yield return null;
+        }
+
+        p1Manager.animator.SetBool("isDashingNow", false);
+        p1Manager.canInput = true;
     }
 }
