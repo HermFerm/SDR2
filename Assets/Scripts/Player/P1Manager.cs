@@ -7,6 +7,7 @@ public class P1Manager : MonoBehaviour
     Transform grafik;
     Animator animator;
     P1AttackManager p1AttackManager;
+    AnimationManager animationManager;
 
     [Header("Flags")]
     public bool isInteracting = false;
@@ -20,6 +21,7 @@ public class P1Manager : MonoBehaviour
         grafik = transform.Find("Grafik");
         animator = grafik.GetComponent<Animator>();
         p1AttackManager = GetComponent<P1AttackManager>();
+        animationManager = GetComponent<AnimationManager>();
     }
 
     private void Update()
@@ -41,6 +43,7 @@ public class P1Manager : MonoBehaviour
 
     public void HandleAttacks()
     {
+        animationManager.PlayTargetAnimation("Slicing", true);
         p1AttackManager.HandleSlice(aimingIsUp, aimingIsDown);       
     }
 
